@@ -8,8 +8,9 @@
 
 import UIKit
 import RealmSwift
+// import SwipeCellKit
 
-class CategoryViewController: UITableViewController {
+class CategoryViewController: SwipeTableViewController {
     
     let realm = try! Realm()
     
@@ -19,6 +20,8 @@ class CategoryViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.rowHeight = 80
 
         loadCategories()
     }
@@ -27,7 +30,7 @@ class CategoryViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         let category = categories?[indexPath.row]
         
@@ -129,6 +132,30 @@ class CategoryViewController: UITableViewController {
         
     }
     
+    // MARK: - Delete Data From Swipe
+    override func updateModel(at indexPath: IndexPath) {
+        
+        // No need to call the superclass. There is nothing there.
+        // super.updateModel(at: indexPath)
+        
+        // Update data model.
+        if let category = categories?[indexPath.row] {
+            
+            do {
+                
+                try self.realm.write {
+                    
+                    self.realm.delete(category)
+                    
+                }
+                
+            }
+            catch {
+                
+                print("Error while deleting a category: \(error)")
+                
+            }
+            
+        }
+    }
 }
-
-// extension CategoryViewController:
