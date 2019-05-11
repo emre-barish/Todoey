@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 import RealmSwift
 
 @UIApplicationMain
@@ -20,11 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
                 
         // print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last! as String)
-        print(Realm.Configuration.defaultConfiguration.fileURL)
+        // print(Realm.Configuration.defaultConfiguration.fileURL)
         
         do {
             
-            let realm = try Realm()
+            _ = try Realm()
             
         }
         catch {
@@ -68,11 +67,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //
 //    }
 
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        // Saves changes in the application's managed object context before the application terminates.
-        // self.saveContext()
-    }
+//    func applicationWillTerminate(_ application: UIApplication) {
+//        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+//        // Saves changes in the application's managed object context before the application terminates.
+//        // self.saveContext()
+//    }
 
 }
 
