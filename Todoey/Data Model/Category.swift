@@ -8,10 +8,12 @@
 
 import Foundation
 import RealmSwift
+import ChameleonFramework
 
 class Category: Object {
     
-    @objc dynamic var name: String = ""
+    @objc dynamic var name: String?
     let items = List<Item>()
+    @objc dynamic var colorInHex: String?
     
 }
